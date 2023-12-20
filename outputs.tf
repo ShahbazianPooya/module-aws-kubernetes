@@ -7,11 +7,11 @@ output "eks_cluster_name" {
 }
 
 output "eks_cluster_certificate_data" {
-  value = aws_eks_cluster.aarch-class-eks.certificate_authority.0.data
+  value = aws_eks_cluster.arch-class-eks.certificate_authority.0.data
 }
 
 output "eks_cluster_endpoint" {
-  value = aws_eks_cluster.aarch-class-eks.endpoint
+  value = aws_eks_cluster.arch-class-eks.endpoint
 }
 
 output "eks_cluster_nodegroup_id" {
