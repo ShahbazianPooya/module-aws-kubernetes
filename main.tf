@@ -59,11 +59,11 @@ resource "aws_security_group" "ms-cluster" {
   }
 
   tags = {
-    Name = "arch-class-ms"
+    Name = "arch-class-eks"
   }
 }
 
-resource "aws_eks_cluster" "arch-class-ms" {
+resource "aws_eks_cluster" "arch-class-eks" {
   name     = local.cluster_name
   role_arn = aws_iam_role.ms-cluster.arn
 
@@ -119,7 +119,7 @@ resource "aws_iam_role_policy_attachment" "ms-node-AmazonEC2ContainerRegistryRea
 }
 
 resource "aws_eks_node_group" "ms-node-group" {
-  cluster_name    = aws_eks_cluster.arch-class-ms.name
+  cluster_name    = aws_eks_cluster.arch-class-eks.name
   node_group_name = "microservices"
   node_role_arn   = aws_iam_role.ms-node.arn
   subnet_ids      = var.nodegroup_subnet_ids
@@ -146,7 +146,7 @@ resource "local_file" "kubeconfig" {
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority-data: ${aws_eks_cluster.arch-class-ms.certificate_authority.0.data}
+    certificate-authority-data: ${aws_eks_cluster.arch-class-eks.certificate_authority.0.data}
     server: ${aws_eks_cluster.arch-class-ms.endpoint}
   name: ${aws_eks_cluster.arch-class-ms.arn}
 contexts:
