@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.aws_region
-}
-
 locals {
   cluster_name = "${var.cluster_name}-${var.env_name}"
 }
